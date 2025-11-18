@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quantum Pixel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="rgb-lines">
+    <div class="rgb-line"></div>
+    <div class="rgb-line"></div>
+    <div class="rgb-line"></div>
+    <div class="rgb-line"></div>
+    <div class="rgb-line"></div>
+    <div class="rgb-line"></div>
+  </div>
+
+  <header class="navbar">
+    <div class="navbar-top">
+      <div class="logo" onclick="showPage('home')">Quantum Pixel</div>
+      <div class="search-container">
+        <input id="search" type="text" placeholder="Buscar juego..." aria-label="Buscar juego">
+        <button id="searchBtn" title="Buscar">🔍</button>
+      </div>
+    </div>
+    <div class="navbar-bottom">
+      <nav>
+        <a href="#" onclick="showPage('home'); return false;" aria-label="Inicio">Inicio</a>
+        <a href="#" onclick="showPage('catalog'); return false;" aria-label="Catálogo">Catálogo</a>
+        <a href="#" onclick="showPage('library'); return false;" aria-label="Biblioteca">Biblioteca</a>
+        <a href="#" onclick="showPage('news'); return false;" aria-label="Novedades">Novedades</a>
+        <a href="#" onclick="showPage('offers'); return false;" aria-label="Ofertas">Ofertas</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <div id="homePage" class="page active">
+    <div class="app" role="main" aria-label="Galería de videojuegos">
+      <div class="header-section">
+        <h3>Juegos Destacados</h3>
+      </div>
+
+      <p id="noResults">⚠️ Juego no encontrado</p>
+
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </div>
+
+ 
+  <div id="catalogPage" class="page catalog-page">
+    <div class="catalog-full-container">
+      <div class="header-section">
+        <h3>Catálogo Completo</h3>
+      </div>
+      <div class="catalog-grid" id="catalogGrid"></div>
+    </div>
+  </div>
+
+
+  <div id="libraryPage" class="page catalog-page">
+    <div class="catalog-container">
+
+      <aside class="catalog-sidebar-left">
+        <h3 class="sidebar-title">Biblioteca</h3>
+        <div class="game-list" id="gameList"></div>
+      </aside>
+
+      <main class="catalog-main">
+        <div class="user-profile">
+          <img src="https://i.pravatar.cc/80?img=12" alt="Avatar" class="user-avatar">
+          <div class="user-info">
+            <h2 class="user-name">Jhonner</h2>
+            <p class="user-level">Nivel: 78</p>
+          </div>
+        </div>
+
+        <div class="catalog-section">
+          <h3 class="section-heading">PROGRESO</h3>
+          <div class="progress-grid" id="progressGrid"></div>
+        </div>
+
+        <div class="catalog-section">
+          <h3 class="section-heading">INFO</h3>
+          <div class="info-card" id="infoCard">
+            <img src="img/gta5.png" alt="Juego destacado" class="info-game-image">
+            <div class="info-game-details">
+              <h4 class="info-game-title">Más jugado: Grand theft Auto V</h4>
+              <p class="info-game-subtitle">Última sesión: Hoy</p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="catalog-sidebar-right">
+        <h3 class="sidebar-title">Amigos</h3>
+        <div class="friends-list" id="friendsList">
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=1" alt="Vero" class="friend-avatar">
+            <span class="friend-name">Vero</span>
+          </div>
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=2" alt="Eri" class="friend-avatar">
+            <span class="friend-name">Eri</span>
+          </div>
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=3" alt="Alice" class="friend-avatar">
+            <span class="friend-name">Alice</span>
+          </div>
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=4" alt="Leo" class="friend-avatar">
+            <span class="friend-name">Leo</span>
+          </div>
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=5" alt="Sora" class="friend-avatar">
+            <span class="friend-name">Sora</span>
+          </div>
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=6" alt="Felix" class="friend-avatar">
+            <span class="friend-name">Felix</span>
+          </div>
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=7" alt="Iskandar" class="friend-avatar">
+            <span class="friend-name">Iskandar</span>
+          </div>
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=8" alt="Elleya" class="friend-avatar">
+            <span class="friend-name">Elleya</span>
+          </div>
+          <div class="friend-item">
+            <img src="https://i.pravatar.cc/40?img=9" alt="Jane" class="friend-avatar">
+            <span class="friend-name">Jane</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div id="newsPage" class="page catalog-page">
+    <div class="catalog-full-container">
+      <div class="header-section">
+        <h3>Novedades</h3>
+        <p class="subtitle-section">Los lanzamientos más recientes</p>
+      </div>
+
+      <div class="news-hero" id="newsHero">
+        <img class="news-hero-bg" src="img/spider.png" alt="Juego destacado">
+        <div class="news-hero-gradient"></div>
+        <div class="news-hero-content">
+          <div class="news-badge">NUEVO</div>
+          <h2 class="news-hero-title">Marvel's Spider-Man 2</h2>
+          <p class="news-hero-desc">La secuela épica donde Peter Parker y Miles Morales unen fuerzas para salvar Nueva York.</p>
+          <div class="news-hero-meta">
+            <span class="news-date">🗓️ Lanzado: 20 Oct 2023</span>
+            <span class="news-genre">🎮 Acción / Aventura</span>
+          </div>
+          <button class="btn btn-play" onclick="openGameDetailById('spider_man_2')">▶ VER DETALLES</button>
+        </div>
+      </div>
+
+      <div class="news-grid" id="newsGrid"></div>
+    </div>
+  </div>
+
+  <div id="offersPage" class="page catalog-page">
+    <div class="catalog-full-container">
+      <div class="header-section">
+        <h3>Ofertas Especiales</h3>
+        <p class="subtitle-section">Los mejores descuentos de la temporada</p>
+      </div>
+
+      <div class="offers-featured">
+        <div class="offer-timer">
+          <div class="timer-icon">⏰</div>
+          <div class="timer-content">
+            <div class="timer-label">OFERTA RELÁMPAGO</div>
+            <div class="timer-countdown" id="offerTimer">Termina en: 23:45:12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offers-grid" id="offersGrid"></div>
+    </div>
+  </div>
+
+  <div id="detailPage" class="page game-detail-page">
+    <div class="hero-section">
+      <img id="heroImg" class="hero-background" src="" alt="">
+      <div class="hero-gradient"></div>
+      <div class="hero-content">
+        <h1 class="game-logo-title" id="detailTitle"></h1>
+      </div>
+    </div>
+
+    <div class="game-info-section">
+      <div class="info-grid">
+        <div class="main-content">
+          <div class="action-bar">
+            <button class="btn btn-play">▶ JUGAR</button>
+            <button class="btn btn-secondary">⏰ TIEMPO DE JUEGO<br><small style="font-size:11px">0 hrs</small></button>
+            <button class="btn btn-secondary">⭐ ÚLTIMA SESIÓN<br><small style="font-size:11px">Nunca</small></button>
+            <button class="btn btn-secondary" style="padding: 14px 20px;">❤️</button>
+            <button class="btn btn-secondary" style="padding: 14px 20px;">⚙️</button>
+          </div>
+
+          <div class="game-stats">
+            <div class="stat-item">
+              <div class="stat-icon">🎮</div>
+              <div class="stat-label">Género</div>
+              <div class="stat-value">Acción</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon">👥</div>
+              <div class="stat-label">Jugadores</div>
+              <div class="stat-value">1 jugador</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon">🏆</div>
+              <div class="stat-label">Logros</div>
+              <div class="stat-value">0 de 50</div>
+            </div>
+          </div>
+
+          <div class="section-title">Sinopsis</div>
+          <div class="game-description" id="detailDesc"></div>
+        </div>
+
+        <div class="sidebar">
+          <div class="info-box">
+            <div class="section-title" style="font-size: 16px; margin-bottom: 15px;">Información</div>
+            <div class="info-row">
+              <span class="info-label">Desarrollador</span>
+              <span class="info-value">Studio XYZ</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Editor</span>
+              <span class="info-value">Publisher Inc</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Fecha de lanzamiento</span>
+              <span class="info-value">2024</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Tamaño</span>
+              <span class="info-value">45 GB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recommendations">
+        <div class="section-title">Relacionados</div>
+        <div class="rec-grid" id="recGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    const games = [
+      { 
+        id: 'horizon_zero_dawn', 
+        name: "Horizon Zero Dawn", 
+        img: "img/horizon.png", 
+        desc: "Horizon Zero Dawn es un juego de acción y aventura en un mundo post-apocalíptico donde las máquinas dominan la Tierra. Controla a Aloy, una cazadora hábil que debe descubrir los misterios de su mundo y su propio pasado mientras enfrenta criaturas mecánicas gigantes.",
+        progress: 34,
+        isNew: false,
+        discount: 0,
+        releaseDate: "2017"
+      },
+      { 
+        id: 'outlast_ii', 
+        name: "Outlast II", 
+        img: "img/outlas2.png", 
+        desc: "Outlast II es un survival horror en primera persona que te sumerge en una experiencia aterradora. En medio de las tierras salvajes de Arizona, tu investigación te llevará a un pueblo abandonado donde descubrirás horrores indescriptibles. Sin armas para defenderte, tu única opción es correr, esconderte y rezar para sobrevivir a esta pesadilla.",
+        progress: 67,
+        isNew: false,
+        discount: 50,
+        originalPrice: "$29.99",
+        discountPrice: "$14.99"
+      },
+      { 
+        id: 'nier_automata', 
+        name: "Nier: Automata", 
+        img: "img/nier.png", 
+        desc: "Nier: Automata es un juego de rol y acción que combina elementos de hack and slash, disparos y exploración en un mundo abierto. Desarrollado por PlatinumGames y publicado por Square Enix, el juego se desarrolla en un futuro post-apocalíptico donde la humanidad ha sido expulsada de la Tierra por máquinas alienígenas. Los jugadores toman el control de androides de combate de la unidad YoRHa mientras luchan para recuperar el planeta.",
+        progress: 51,
+        isNew: false,
+        discount: 30,
+        originalPrice: "$39.99",
+        discountPrice: "$27.99"
+      },
+      { 
+        id: 'hollow_knight_silksong', 
+        name: "Hollow Knight Silksong", 
+        img: "img/silk.png", 
+        desc: "Hollow Knight es un desafiante juego de aventura y acción 2D que te lleva a explorar Hallownest, un vasto reino de insectos y héroes en ruinas. Desciende a las profundidades de un mundo olvidado, lucha contra criaturas corrompidas y forja tu propio camino en este metroidvania atmosférico dibujado a mano.",
+        progress: 78,
+        isNew: true,
+        discount: 0,
+        releaseDate: "2024"
+      },
+      { 
+        id: 'hollow_knight', 
+        name: "Hollow Knight", 
+        img: "img/hollow.png", 
+        desc: "Hollow Knight es un desafiante juego de aventura y acción 2D que te lleva a explorar Hallownest, un vasto reino de insectos y héroes en ruinas. Desciende a las profundidades de un mundo olvidado, lucha contra criaturas corrompidas y forja tu propio camino en este metroidvania atmosférico dibujado a mano.",
+        progress: 87,
+        isNew: false,
+        discount: 40,
+        originalPrice: "$14.99",
+        discountPrice: "$8.99"
+      },
+      { 
+        id: 'spider_man_2', 
+        name: "Marvel's Spider-Man 2", 
+        img: "img/spider.png", 
+        desc: "Marvel's Spider-Man 2 es la secuela épica donde Peter Parker y Miles Morales unen fuerzas. Balancea entre los rascacielos de Nueva York, domina nuevas habilidades y enfrenta amenazas devastadoras. Con gráficos de última generación y una historia emocionante, este es el juego definitivo de Spider-Man.",
+        progress: 24,
+        isNew: true,
+        discount: 0,
+        releaseDate: "20 Oct 2023"
+      },
+      { 
+        id: 'red_redemption_2', 
+        name: "Red Dead Redemption 2", 
+        img: "img/Read redemption 2.png", 
+        desc: "Red Dead Redemption 2 es una épica historia del salvaje oeste americano. Vive como Arthur Morgan, un forajido miembro de la banda de Dutch van der Linde. En un mundo abierto masivo, experimenta una narrativa magistral mientras la era de los forajidos llega a su fin.",
+        progress: 45,
+        isNew: false,
+        discount: 60,
+        originalPrice: "$59.99",
+        discountPrice: "$23.99"
+      },
+      { 
+        id: 'genshin_impact', 
+        name: "Genshin Impact", 
+        img: "img/genchin2.png", 
+        desc: "Genshin Impact es un RPG de mundo abierto con un impresionante sistema de combate elemental. Explora el místico mundo de Teyvat, recluta diversos personajes y descubre los secretos de los Siete Arcontes en esta aventura épica gratuita.",
+        progress: 62,
+        isNew: false,
+        discount: 0
+      },
+      { 
+        id: 'dragon_ball_sparking', 
+        name: "Dragon Ball Sparking Zero", 
+        img: "img/dragonball.png", 
+        desc: "Dragon Ball Sparking Zero trae de vuelta la acción frenética de las peleas de Dragon Ball con gráficos de nueva generación. Experimenta combates épicos con tus personajes favoritos del anime en entornos destructibles.",
+        progress: 31,
+        isNew: true,
+        discount: 0,
+        releaseDate: "11 Oct 2024"
+      },
+      { 
+        id: 'the_last_of_us', 
+        name: "The Last Of Us", 
+        img: "img/thelast.png", 
+        desc: "The Last of Us es una historia post-apocalíptica emocionalmente intensa. Acompaña a Joel y Ellie en un viaje desesperado a través de Estados Unidos devastado por una pandemia, donde la humanidad está al borde de la extinción.",
+        progress: 100,
+        isNew: false,
+        discount: 70,
+        originalPrice: "$19.99",
+        discountPrice: "$5.99"
+      },
+      { 
+        id: 'the_last_of_us_2', 
+        name: "The Last Of Us Part II", 
+        img: "img/thelast2.png", 
+        desc: "The Last of Us Part II continúa la historia con Ellie como protagonista. En un mundo aún más brutal, enfrenta las consecuencias de la venganza en una narrativa madura y emotiva que desafía tus emociones.",
+        progress: 58,
+        isNew: false,
+        discount: 55,
+        originalPrice: "$59.99",
+        discountPrice: "$26.99"
+      },
+      { 
+        id: 'scarlet_nexus', 
+        name: "Scarlet Nexus", 
+        img: "img/scarlet.png", 
+        desc: "Scarlet Nexus es un RPG de acción futurista donde controlas a soldados con poderes psíquicos luchando contra criaturas mutantes. Combina acción frenética con una profunda historia de ciencia ficción en un mundo visualmente impresionante.",
+        progress: 42,
+        isNew: false,
+        discount: 45,
+        originalPrice: "$49.99",
+        discountPrice: "$27.49"
+      },
+      { 
+        id: 'gtav',
+        name: "Grand Theft Auto V", 
+        img: "img/gta5.png", 
+        desc: "GTA V es el juego de mundo abierto definitivo. Experimenta las vidas entrelazadas de tres criminales en Los Santos, una ciudad vibrante llena de oportunidades para el caos, los atracos y la diversión sin límites.",
+        progress: 73,
+        isNew: false,
+        discount: 50,
+        originalPrice: "$29.99",
+        discountPrice: "$14.99"
+      },
+      { 
+        id: 'farcry_5',
+        name: "Far Cry 5", 
+        img: "img/farcry5.png", 
+        desc: "Far Cry 5 te lleva a Hope County, Montana, donde debes liberar una comunidad del control de un culto fanático. Explora vastos paisajes, recluta aliados y lucha por la libertad en este shooter de mundo abierto.",
+        progress: 55,
+        isNew: false,
+        discount: 65,
+        originalPrice: "$29.99",
+        discountPrice: "$10.49"
+      },
+      { 
+        id: 'farcry_6',
+        name: "Far Cry 6", 
+        img: "img/farcry6.png", 
+        desc: "Far Cry 6 te transporta a Yara, una nación tropical congelada en el tiempo. Une fuerzas con la guerrilla para derrocar al dictador Antón Castillo en una revolución explosiva llena de acción y caos.",
+        progress: 38,
+        isNew: true,
+        discount: 0,
+        releaseDate: "7 Oct 2021"
+      },
+      { 
+        id: 'farcry_4',
+        name: "Far Cry 4", 
+        img: "img/farcry4.png", 
+        desc: "Far Cry 4 te sitúa en Kyrat, una región salvaje del Himalaya bajo el control del tirano Pagan Min. Explora paisajes montañosos impresionantes mientras lideras la resistencia en esta aventura de acción.",
+        progress: 66,
+        isNew: false,
+        discount: 75,
+        originalPrice: "$19.99",
+        discountPrice: "$4.99"
+      },
+      { 
+        id: 'farcry_3',
+        name: "Far Cry 3", 
+        img: "img/farcry3.png", 
+        desc: "Far Cry 3 es la aventura tropical que define la serie. Atrapado en una isla controlada por piratas dementes, debes transformarte de víctima a cazador para salvar a tus amigos en esta historia intensa.",
+        progress: 82,
+        isNew: false,
+        discount: 80,
+        originalPrice: "$19.99",
+        discountPrice: "$3.99"
+      },
+      { 
+        id: 'farcry_2',
+        name: "Far Cry 2", 
+        img: "img/farcry2.png", 
+        desc: "Far Cry 2 te sumerge en un conflicto africano brutal. Como mercenario atrapado en medio de una guerra civil, debes navegar por un mundo hostil lleno de decisiones difíciles y realismo crudo.",
+        progress: 29,
+        isNew: false,
+        discount: 85,
+        originalPrice: "$9.99",
+        discountPrice: "$1.49"
+      },
+      { 
+        id: 'gta_san_andreas',
+        name: "GTA San Andreas", 
+        img: "img/gta.png", 
+        desc: "GTA San Andreas es un clásico atemporal. Regresa a casa como CJ para descubrir que tu barrio está en ruinas. Conquista el estado de San Andreas en esta épica historia de gangs, traición y redención.",
+        progress: 95,
+        isNew: false,
+        discount: 60,
+        originalPrice: "$14.99",
+        discountPrice: "$5.99"
+      },
+      { 
+        id: 'fallout_4',
+        name: "Fallout 4", 
+        img: "img/fallout4.png", 
+        desc: "Fallout 4 te arroja al yermo post-nuclear de Boston. Como único superviviente del Refugio 111, explora un mundo devastado, construye asentamientos y decide el destino del Commonwealth en este RPG de mundo abierto.",
+        progress: 47,
+        isNew: false,
+        discount: 70,
+        originalPrice: "$19.99",
+        discountPrice: "$5.99"
+      },
+      { 
+        id: 'cod_mw',
+        name: "Call of Duty Modern Warfare", 
+        img: "img/callofduty.png", 
+        desc: "Call of Duty Modern Warfare redefine el shooter táctico moderno. Experimenta combates intensos y realistas en una campaña cinematográfica y un multijugador competitivo de primer nivel.",
+        progress: 71,
+        isNew: false,
+        discount: 40,
+        originalPrice: "$59.99",
+        discountPrice: "$35.99"
+      }
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const search = document.getElementById('search');
+    const searchBtn = document.getElementById('searchBtn');
+    const noResults = document.getElementById('noResults');
+    const gameList = document.getElementById('gameList');
+    const progressGrid = document.getElementById('progressGrid');
+    const catalogGrid = document.getElementById('catalogGrid');
+    const newsGrid = document.getElementById('newsGrid');
+    const offersGrid = document.getElementById('offersGrid');
+
+    let currentGame = null;
+
+    function renderFeaturedGames() {
+      gallery.innerHTML = '';
+      const featured = games.slice(0, 6);
+      featured.forEach(g => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<img src="${g.img}" alt="${g.name}">`;
+        div.addEventListener('click', () => openGameDetail(g));
+        gallery.appendChild(div);
+      });
+    }
+
+    function renderCatalog() {
+      if (!catalogGrid) return;
+      catalogGrid.innerHTML = '';
+      games.forEach(g => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<img src="${g.img}" alt="${g.name}">`;
+        div.addEventListener('click', () => openGameDetail(g));
+        catalogGrid.appendChild(div);
+      });
+    }
+
+    function renderGameList() {
+      if (!gameList) return;
+      
+      gameList.innerHTML = '';
+      games.forEach(g => {
+        const item = document.createElement('div');
+        item.className = 'game-list-item';
+        item.innerHTML = `
+          <img src="${g.img}" alt="${g.name}">
+          <span>${g.name}</span>
+        `;
+        item.addEventListener('click', () => openGameDetail(g));
+        gameList.appendChild(item);
+      });
+    }
+
+    function renderProgressGrid() {
+      if (!progressGrid) return;
+      const gamesWithProgress = games.filter(g => g.progress > 0).slice(0, 4);
+      
+      progressGrid.innerHTML = '';
+      gamesWithProgress.forEach(g => {
+        const card = document.createElement('div');
+        card.className = 'progress-card';
+        card.innerHTML = `
+          <img src="${g.img}" alt="${g.name}">
+          <div class="progress-overlay">
+            <div class="progress-title">${g.name}</div>
+            <div class="progress-subtitle">${g.progress} h jugadas</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: ${g.progress}%"></div>
+            </div>
+          </div>
+        `;
+        card.addEventListener('click', () => openGameDetail(g));
+        progressGrid.appendChild(card);
+      });
+    }
+
+    function renderNews() {
+      if (!newsGrid) return;
+      const newGames = games.filter(g => g.isNew);
+      
+      newsGrid.innerHTML = '';
+      newGames.forEach(g => {
+        const card = document.createElement('div');
+        card.className = 'news-card';
+        card.innerHTML = `
+          <img src="${g.img}" alt="${g.name}">
+          <div class="news-card-badge">NUEVO</div>
+          <div class="news-card-content">
+            <h3 class="news-card-title">${g.name}</h3>
+            <p class="news-card-date">🗓️ ${g.releaseDate || '2024'}</p>
+            <p class="news-card-desc">${g.desc.substring(0, 120)}...</p>
+          </div>
+        `;
+        card.addEventListener('click', () => openGameDetail(g));
+        newsGrid.appendChild(card);
+      });
+    }
+
+    function renderOffers() {
+      if (!offersGrid) return;
+      const gamesOnSale = games.filter(g => g.discount > 0);
+      
+      offersGrid.innerHTML = '';
+      gamesOnSale.forEach(g => {
+        const card = document.createElement('div');
+        card.className = 'offer-card';
+        card.innerHTML = `
+          <img src="${g.img}" alt="${g.name}">
+          <div class="offer-badge">-${g.discount}%</div>
+          <div class="offer-card-content">
+            <h3 class="offer-card-title">${g.name}</h3>
+            <div class="offer-prices">
+              <span class="offer-original-price">${g.originalPrice}</span>
+              <span class="offer-discount-price">${g.discountPrice}</span>
+            </div>
+          </div>
+        `;
+        card.addEventListener('click', () => openGameDetail(g));
+        offersGrid.appendChild(card);
+      });
+    }
+
+function openGameDetail(game) {
+  currentGame = game;
+
+  const heroImgPath = game.img.replace('img/', 'imgnuevas/');
+  document.getElementById('heroImg').src = heroImgPath;
+  document.getElementById('detailTitle').textContent = game.name;
+  document.getElementById('detailDesc').textContent = game.desc;
+
+  cargarRelacionados(game.id);
+
+  showPage('detail');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openGameDetailById(id) {
+  const game = games.find(g => g.id === id);
+  if (!game) return;
+  openGameDetail(game);
+}
+
+function cargarRelacionados(currentId) {
+  const recGrid = document.getElementById('recGrid');
+  if (!recGrid) return;
+
+  const disponibles = games.filter(g => g.id !== currentId);
+
+  for (let i = disponibles.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [disponibles[i], disponibles[j]] = [disponibles[j], disponibles[i]];
+  }
+
+  const relacionados = disponibles.slice(0, 4);
+  recGrid.innerHTML = '';
+  relacionados.forEach(g => {
+    const card = document.createElement('div');
+    card.className = 'rec-card';
+    card.innerHTML = `
+      <img src="${g.img}" alt="${g.name}">
+      <div class="rec-card-title">${g.name}</div>
+    `;
+    card.addEventListener('click', () => openGameDetail(g));
+
+    recGrid.appendChild(card);
+  });
+}
+
+
+    function openGameDetailById(gameId) {
+      const game = games.find(g => g.id === gameId);
+      if (game) {
+        openGameDetail(game);
+        }
+    }
+
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      
+      if (page === 'home') {
+        document.getElementById('homePage').classList.add('active');
+        search.disabled = false;
+        search.value = '';
+      } else if (page === 'catalog') {
+        document.getElementById('catalogPage').classList.add('active');
+        search.disabled = true;
+        search.value = '';
+        renderCatalog();
+      } else if (page === 'library') {
+        document.getElementById('libraryPage').classList.add('active');
+        search.disabled = false;
+        search.value = '';
+        renderGameList();
+        renderProgressGrid();
+      } else if (page === 'news') {
+        document.getElementById('newsPage').classList.add('active');
+        search.disabled = true;
+        search.value = '';
+        renderNews();
+      } else if (page === 'offers') {
+        document.getElementById('offersPage').classList.add('active');
+        search.disabled = true;
+        search.value = '';
+        renderOffers();
+        startOfferTimer();
+      } else if (page === 'detail') {
+        document.getElementById('detailPage').classList.add('active');
+        search.disabled = true;
+        search.value = '';
+      }
+    }
+
+    function filter(q) {
+      const term = q.trim().toLowerCase();
+      const filtered = games.filter(g => g.name.toLowerCase().includes(term));
+      
+      gallery.innerHTML = '';
+      filtered.slice(0, 6).forEach(g => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<img src="${g.img}" alt="${g.name}">`;
+        div.addEventListener('click', () => openGameDetail(g));
+        gallery.appendChild(div);
+      });
+      
+      if (filtered.length === 0 && term !== "") {
+        noResults.style.display = "block";
+      } else {
+        noResults.style.display = "none";
+      }
+    }
+
+    // Timer para ofertas
+    function startOfferTimer() {
+      const timerElement = document.getElementById('offerTimer');
+      if (!timerElement) return;
+
+      let hours = 23;
+      let minutes = 45;
+      let seconds = 12;
+
+      setInterval(() => {
+        seconds--;
+        if (seconds < 0) {
+          seconds = 59;
+          minutes--;
+        }
+        if (minutes < 0) {
+          minutes = 59;
+          hours--;
+        }
+        if (hours < 0) {
+          hours = 23;
+          minutes = 59;
+          seconds = 59;
+        }
+
+        const h = hours.toString().padStart(2, '0');
+        const m = minutes.toString().padStart(2, '0');
+        const s = seconds.toString().padStart(2, '0');
+        
+        timerElement.textContent = `Termina en: ${h}:${m}:${s}`;
+      }, 1000);
+    }
+
+    search.addEventListener('input', (e) => {
+      if (!search.disabled) {
+        filter(e.target.value);
+      }
+    });
+
+    search.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !search.disabled) {
+        filter(search.value);
+      }
+    });
+
+    searchBtn.addEventListener('click', () => {
+      if (!search.disabled) {
+        filter(search.value);
+      }
+    });
+
+    renderFeaturedGames();
+  </script>
+</body>
+</html>
